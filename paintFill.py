@@ -1,25 +1,36 @@
 class PixelGrid:
     def __init__(self, width=100, height=100):
+        self.width = width
+        self.height = height
         self.grid = [[Pixel()] * width for i in range(height)]
 
+    def __str__(self):
+        result = ''
+        for row in self.grid:
+            result += str(row) + '\n'
+        return result
+
     def paintFill(self, clickPoint, color):
-        if (not self._isValidPoint(*clickPoint)):
+        row, column = clickPoint
+        if (not self._isValidPoint(row, column)):
             raise ValueError('Coordinates given are not within the range of the grid')
-        _bloom(clickPoint, self.grid[clickPoint], color)
+        self._bloom(clickPoint, self.grid[row][column], color)
 
     def _bloom(self, coordinates, originalColor, newColor):
-        if grid[coordinates] == originalColor:
-            grid[coordinates] = newColor
         row, column = coordinates
-        self._bloom((row, column + 1), originalColor, newColor)
-        self._bloom((row, column - 1), originalColor, newColor)
-        self._bloom((row + 1, column), originalColor, newColor)
-        self._bloom((row - 1, column - 1), originalColor, newColor)
+        if (not self._isValidPoint(row, column)):
+            return
+        if self.grid[row][column] == originalColor:
+            self.grid[row][column] = newColor
+            self._bloom((row, column + 1), originalColor, newColor)
+            self._bloom((row, column - 1), originalColor, newColor)
+            self._bloom((row + 1, column), originalColor, newColor)
+            self._bloom((row - 1, column), originalColor, newColor)
 
 
         
-    def _isValidPoint(self, x, y):
-        if x >= 0 and x < 256 and y >= 0 and y < 256:
+    def _isValidPoint(self, row, column):
+        if row >= 0 and row < self.height and column >= 0 and column < self.width:
             return True
         else:
             return False
@@ -32,5 +43,8 @@ class Pixel:
         self.g = g
         self.b = b
      
-    def __str__(self):
-        return 'R:%s, G:%s, B%s'.format(self.r, self.g, self.b)
+    def __repr__(self):
+        return 'R:{}, G:{}, B{}'.format(self.r, self.g, self.b)
+
+    def __eq__(self, other):
+        return self.r == other.r and self.g == other.g and self.b == other.b
