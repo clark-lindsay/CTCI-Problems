@@ -3,7 +3,7 @@ def englishInt(integer):
     if len(intString) == 1:
         return _singleCharacterEnglishInt(intString).rstrip()
     resultString = ''
-    postFixList = ['', 'Thousand, ', 'Million, ', 'Billion, ', 'Trillion, ', 'Quadrillion, ']
+    postFixList = ['', 'Thousand, ', 'Million, ', 'Billion, ', 'Trillion, ', 'Quadrillion, ', 'Quintillion ']
     lastBreakIndex = 0
     for i in range(len(intString)):
         remainingLength = len(intString[i:])
