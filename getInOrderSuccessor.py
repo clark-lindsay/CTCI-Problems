@@ -1,6 +1,6 @@
 from TreeNode import *
 
-def getInOrderSuccessor(TreeNode node):
+def getInOrderSuccessor(node):
     if node is None:
         return None
     if node.right is not None:
@@ -13,7 +13,7 @@ def getInOrderSuccessor(TreeNode node):
             parent = parent.parent
         return parent
 
-def _getLeftmostChild(TreeNode node):
+def _getLeftmostChild(node):
     if node is None:
         return None
     while node.left is not None:

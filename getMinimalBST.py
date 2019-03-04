@@ -1,6 +1,5 @@
 from TreeNode import TreeNode
 
-
 def getMinimalBST(sortedSequence):
     print('In-order traversal list:')
     if (0 == len(sortedSequence)):
