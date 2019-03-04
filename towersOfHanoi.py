@@ -1,14 +1,10 @@
 from collections import deque
 
-
 class TowerOfHanoi:
     def __init__(self):
         self.diskStack = deque()
     
     def __repr(self):
-        return self.diskStack
-
-    def __str__(self):
         return str(list(self.diskStack))
 
     def moveDisks(self, numDisks, destinationTower, bufferTower):
