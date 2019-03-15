@@ -12,12 +12,13 @@ class  QuarantineModel:
                     pass
 class InfectedRegion:
     def __init__(self, coordinateSequence):
-        self.tiles = coordinateSequence
+        '''TODO save the area of the infected region with a dict that maps a row index to
+        a tuple containing the range of the infected region in that row '''
         #TODO calculate perimeter and area of the given coordinate sequence
         self.contained = False
     
     def __repr__(self):
-        return self.tiles
+        pass
     
     def grow(self):
         pass
